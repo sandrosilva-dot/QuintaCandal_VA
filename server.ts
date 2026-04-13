@@ -10,12 +10,22 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  const getImagesDir = (subPath: string) => {
+    // In production, Vite copies public folder contents to the root of dist
+    // In development, we look directly in the public folder
+    const isProd = process.env.NODE_ENV === "production";
+    const baseDir = isProd ? path.join(process.cwd(), "dist") : path.join(process.cwd(), "public");
+    return path.join(baseDir, subPath);
+  };
+
   // API to list images in the 06_MASTER LOTEMANETO folder
   app.get("/api/masterplan-images", (req, res) => {
-    const dirPath = path.join(process.cwd(), "public", "REF", "06_MASTER LOTEMANETO");
+    const subPath = path.join("REF", "06_MASTER LOTEMANETO");
+    const dirPath = getImagesDir(subPath);
     
     try {
       if (!fs.existsSync(dirPath)) {
+        console.warn(`Directory not found: ${dirPath}`);
         return res.json([]);
       }
       
@@ -34,10 +44,12 @@ async function startServer() {
 
   // API to list images in the 08_PROPOSTA B folder
   app.get("/api/proposta-b-images", (req, res) => {
-    const dirPath = path.join(process.cwd(), "public", "REF", "08_PROPOSTA B");
+    const subPath = path.join("REF", "08_PROPOSTA B");
+    const dirPath = getImagesDir(subPath);
     
     try {
       if (!fs.existsSync(dirPath)) {
+        console.warn(`Directory not found: ${dirPath}`);
         return res.json([]);
       }
       
@@ -56,10 +68,12 @@ async function startServer() {
 
   // API to list images in the 01_CAPA folder
   app.get("/api/hero-images", (req, res) => {
-    const dirPath = path.join(process.cwd(), "public", "REF", "01_CAPA");
+    const subPath = path.join("REF", "01_CAPA");
+    const dirPath = getImagesDir(subPath);
     
     try {
       if (!fs.existsSync(dirPath)) {
+        console.warn(`Directory not found: ${dirPath}`);
         return res.json([]);
       }
       

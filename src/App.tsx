@@ -362,7 +362,7 @@ const LocationSplit = () => {
   return (
     <section id="location" className="bg-ink text-white">
       <div className="grid lg:grid-cols-2 min-h-screen">
-        <div className="relative h-[50vh] lg:h-auto overflow-hidden contrast-125">
+        <div className="relative h-[50vh] lg:h-auto overflow-hidden grayscale contrast-125">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.004149957754!2d-8.63022592341235!3d41.1354179116345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDA4JzA3LjUiTiA4wrAzNyc0MC4zIlc!5e0!3m2!1spt!2spt!4v1711394800000!5m2!1spt!2spt"
             width="100%" 
@@ -371,7 +371,7 @@ const LocationSplit = () => {
             allowFullScreen={true} 
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-full"
+            className="w-full h-full grayscale"
           ></iframe>
           <div className="absolute inset-0 bg-ink/10 pointer-events-none"></div>
         </div>
@@ -1365,12 +1365,12 @@ const UnumSection = () => {
             </div>
           </div>
           
-          <div className="relative">
+          <div className="relative flex flex-col items-center lg:items-end">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5 }}
-              className="aspect-video bg-ink flex items-center justify-center p-20"
+              className="aspect-video bg-ink flex items-center justify-center p-20 w-full"
             >
               <a 
                 href="https://unum.pt/" 
@@ -1386,8 +1386,22 @@ const UnumSection = () => {
                 />
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.3 }}
+              className="mt-4 w-full flex justify-center px-12"
+            >
+              <img 
+                src="/REF/09_OUTROS/PREMIOS PNG2.png" 
+                alt="Prémios UNUM" 
+                className="h-16 md:h-24 w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
             
-            <div className="mt-8 flex gap-8 justify-center lg:justify-end">
+            <div className="mt-12 flex gap-8 justify-center lg:justify-end w-full">
               <a href="https://www.instagram.com/unum.arch/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-widest text-white/40 hover:text-gold transition-colors">
                 Instagram
               </a>
