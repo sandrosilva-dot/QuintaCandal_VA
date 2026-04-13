@@ -1198,6 +1198,12 @@ const UpsideScenario = () => {
     return () => clearInterval(timer);
   }, [upsideImages]);
 
+  useEffect(() => {
+    if (currentUpsideIndex >= upsideImages.length && upsideImages.length > 0) {
+      setCurrentUpsideIndex(0);
+    }
+  }, [upsideImages, currentUpsideIndex]);
+
   return (
     <section id="upside" className="py-32 md:py-56 px-8 bg-ink text-white relative overflow-hidden">
       <div className="max-w-[1800px] mx-auto">
@@ -1253,9 +1259,9 @@ const UpsideScenario = () => {
             className="relative aspect-[3/4] bg-white/5 border border-white/10 overflow-hidden shadow-2xl group"
           >
             <AnimatePresence mode="wait">
-              {upsideImages.length > 0 ? (
+              {upsideImages.length > 0 && upsideImages[currentUpsideIndex] ? (
                 <motion.img 
-                  key={currentUpsideIndex}
+                  key={upsideImages[currentUpsideIndex]}
                   src={upsideImages[currentUpsideIndex]} 
                   alt="Visão Upside" 
                   initial={{ opacity: 0 }}
@@ -1267,7 +1273,7 @@ const UpsideScenario = () => {
                 />
               ) : (
                 <img 
-                  src="/REF/08_PROPOSTA B/XXX_3T_1,0.png" 
+                  src="/REF/08_PROPOSTA B/XXX_3T_1,1-1.png" 
                   alt="Visão Upside" 
                   className="w-full h-full object-cover transition-all duration-1000"
                   referrerPolicy="no-referrer"
